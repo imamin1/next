@@ -1,18 +1,27 @@
 "use client";
-import { useState } from 'react';
-import ChildComponent from './ChildComponent';
+import UserInfo from "./UserInfo";
 
 const index = () => {
-    const [text,setText] = useState('hello what is your name ?');
-    const handlechange = ()=>{
-        setText('im amin')
-    }
-    return (
-        <div className='flex text-center'>
-            <button onClick={handlechange} className='p-4 bg-red-500 rounded-lg m-7'>click me</button>
-            <ChildComponent text={text}/>
-        </div>
-    );
+  const userInfo = [
+    { name: "ali", age: 22, email: "alihossseini82@gmail.com" },
+    { name: "hasan", age: 33, email: "hasanhossseini82@gmail.com" },
+    { name: "hossein", age: 32, email: "hosseinhossseini82@gmail.com" },
+    { name: "javad", age: 26, email: "javadhossseini82@gmail.com" },
+  ];
+  return (
+    <div>
+      {userInfo.map((user) => {
+        return (
+          <UserInfo
+            key={user.name}
+            name={user.name}
+            age={user.age}
+            email={user.email}
+          />
+        );
+      })}
+    </div>
+  );
 };
 
 export default index;
