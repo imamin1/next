@@ -1,4 +1,4 @@
-import Index from "../app/components/Index.jsx";
+import Index from "./components/index.jsx";
 
 export default function Home() {
   return (
