@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Users from "./users";
 import Posts from "./posts";
+import { BrowserRouter , Routes , Route } from "react-router-dom";
+import User from "./users";
 
 const index = () => {
   const [page, setPage] = useState("users");
@@ -36,8 +38,12 @@ const index = () => {
             </button>
           </div>
           <div className="">
-            {page === "users" && <Users/>}
-            {page === "posts" && <Posts/>}
+                <BrowserRouter>
+                <Routes>
+                  <Route path="/users" element={<Users/>}/>
+                  <Route path="/posts" element={<Posts/>}/>
+                </Routes>
+                </BrowserRouter>
           </div>
         </div>
       </div>

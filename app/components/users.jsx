@@ -1,7 +1,7 @@
 "use client"
 import { useGetData } from "./getchData";
 
-const User = () => {
+const Users = () => {
   const {data, loading, error} = useGetData("https://jsonplaceholder.typicode.com/users");
 
   if (loading) return <div className="flex justify-center items-center min-h-[200px]"><span className="text-blue-600 text-lg font-medium">در حال دریافت اطلاعات...</span></div>;
@@ -36,4 +36,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Users;
