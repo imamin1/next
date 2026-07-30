@@ -1,3 +1,4 @@
+import { Outlet ,Link } from "react-router-dom";
 import { useGetData } from "./getchData";
 
 const Users = () => {
@@ -8,6 +9,11 @@ const Users = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
+      <Link
+      to="/users/add-user" className="py-2 px-5 bg-blue-400/70 rounded-lg hover:bg-blue-700 text-white">
+        افزودن کاربر
+      </Link>
+      <Outlet/>
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">لیست کاربران</h2>
       <ul className="bg-white rounded-xl shadow-md divide-y divide-gray-100">
         {data.map((user) => (

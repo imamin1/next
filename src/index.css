@@ -1,1 +1,8 @@
 @import "tailwindcss";
+@font-face{
+  font-family : 'iranyekanwebregular.b95439c1.26xpsrtw74cat';
+  src : url("/public/fonts/iranyekanwebregular.b95439c1.26xpsrtw74cat.woff")
+}
+*{
+  font-family:"iranyekanwebregular.b95439c1.26xpsrtw74cat";
+}
