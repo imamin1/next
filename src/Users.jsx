@@ -1,4 +1,3 @@
-"use client"
 import { useGetData } from "./getchData";
 
 const Users = () => {
