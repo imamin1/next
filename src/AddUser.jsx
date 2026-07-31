@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const AddUser = () => {
@@ -12,7 +11,7 @@ const AddUser = () => {
             <input
               type="text"
               className="border-2 border-gray-300 rounded-lg pr-6 py-2"
-              placeholder="لطفا یک  وارد کنید"
+              placeholder="لطفا یک نام وارد کنید"
             />
           </div>
           <div className="flex flex-col gap-2 mt-4">
@@ -20,7 +19,7 @@ const AddUser = () => {
             <input
               type="text"
               className="border-2 border-gray-300 rounded-lg pr-6 py-2"
-              placeholder="لطفا یک  وارد کنید"
+              placeholder="لطفا یک ایمیل وارد کنید"
             />
           </div>
         </form>

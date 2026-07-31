@@ -2,6 +2,7 @@ import { NavLink, Routes, Route, Navigate } from "react-router-dom";
 import Users from "./Users";
 import Posts from "./Posts";
 import AddUser from "./AddUser";
+import UserDetails from "./UserDetails";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
             <Route path="/" element={<Navigate to="/users" />} />
             <Route path="/users" element={<Users />}>
               <Route path="add-user" element={<AddUser />} />
+              <Route path="user-details/:userId" element={<UserDetails />} />
             </Route>
             <Route path="/posts" element={<Posts />} />
           </Routes>
