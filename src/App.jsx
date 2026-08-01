@@ -3,6 +3,7 @@ import Users from "./Users";
 import Posts from "./Posts";
 import AddUser from "./AddUser";
 import UserDetails from "./UserDetails";
+import NotFound from "./NotFound";
 
 const App = () => {
   return (
@@ -39,12 +40,13 @@ const App = () => {
         </div>
         <div>
           <Routes>
-            {/* <Route path="/" element={<Navigate to="/users" />} /> */}
+            <Route path="/" element={<Navigate to="/users" />} />
             <Route path="/users" element={<Users />}>
               <Route path="add-user" element={<AddUser />} />
               <Route path="user-details/:userId" element={<UserDetails />} />
             </Route>
             <Route path="/posts" element={<Posts />} />
+            <Route path="*" element={<NotFound/>}/>
           </Routes>
         </div>
       </div>
