@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddUser = () => {
+  const navigate = useNavigate();
   return (
     <div className="fixed h-screen w-full left-0 top-0 z-28 bg-black/50 flex justify-center items-center">
       <div className="bg-white w-1/3 py-5 rounded-2xl shadow">
@@ -24,12 +25,12 @@ const AddUser = () => {
           </div>
         </form>
         <div className="text-center mt-10 ">
-          <Link
-            to={"/users"}
+          <button
+            onClick={()=>navigate(-1)}
             className="py-3 px-6 rounded-lg bg-blue-500 text-white hover:bg-blue-500/80"
           >
             بازگشت
-          </Link>
+          </button>
         </div>
       </div>
     </div>

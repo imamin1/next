@@ -12,6 +12,7 @@ const App = () => {
           React app
         </h1>
         <div className="flex justify-center mb-8 mt-3 gap-12">
+
           <NavLink
             to="/users"
             className={({ isActive }) =>
@@ -33,9 +34,12 @@ const App = () => {
             پست‌ها
           </NavLink>
         </div>
+        <div className="">
+          <h2 className="text-2xl font-bold text-center "> به اپلیکشن اتوماسیون من خوش امدید😁</h2>
+        </div>
         <div>
           <Routes>
-            <Route path="/" element={<Navigate to="/users" />} />
+            {/* <Route path="/" element={<Navigate to="/users" />} /> */}
             <Route path="/users" element={<Users />}>
               <Route path="add-user" element={<AddUser />} />
               <Route path="user-details/:userId" element={<UserDetails />} />
