@@ -41,7 +41,7 @@ const Users = () => {
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between">
               <Link
-                to={`user-details/${user.id}`}
+                to={`user-details/${user.id}`} state={{user}}
                 className="flex items-center space-x-3 space-x-reverse"
               >
                 <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center text-white font-bold">

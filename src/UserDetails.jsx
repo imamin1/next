@@ -1,54 +1,21 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const UserDetails = () => {
-  const { userId } = useParams();
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    setLoading(true);
-    setError(null);
+  const location = useLocation()
+  const { user: selectedUser } = location.state || {};
 
-    fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("خطا در دریافت اطلاعات");
-        return res.json();
-      })
-      .then((user) => {
-        setUser(user);
-        setLoading(false);
-        console.log(user);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, [userId]);
-  if (!user) return null
-  if (loading)
-    return (
-      <div className="fixed inset-0 z-20 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-        <div className="flex flex-col items-center gap-3">
-          <span className="h-10 w-10 animate-spin rounded-full border-2 border-amber-400/30 border-t-amber-400"></span>
-          <span className="text-sm font-medium tracking-wide text-amber-200/80">
-            در حال دریافت اطلاعات...
-          </span>
-        </div>
-      </div>
-    );
-  if (error)
+  if (!selectedUser)
     return (
       <div className="fixed inset-0 z-20 flex items-center justify-center bg-black/60 backdrop-blur-sm">
         <div className="rounded-xl border border-red-500/20 bg-red-950/40 px-6 py-4 text-center text-red-300 shadow-lg shadow-red-950/30">
-          خطا: {error}
+          خطا: اطلاعاتی برای نمایش پیدا نشد
         </div>
       </div>
     );
-  // if (!user) return null;
-  const initials = userId
-    .split(0)
+  
+  const initials = selectedUser.name
+    .split(" ")
     .map((part) => part[0])
     .join("")
     .toUpperCase();
@@ -72,9 +39,9 @@ const UserDetails = () => {
             </div>
             <div>
               <h2 className="text-xl font-bold tracking-tight text-white">
-                {user.name}
+                {selectedUser.name}
               </h2>
-              <p className="text-sm text-amber-200/70">{user.company.name}</p>
+              <p className="text-sm text-amber-200/70">{selectedUser.company.name}</p>
             </div>
           </div>
 
@@ -87,25 +54,25 @@ const UserDetails = () => {
               <div className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
                 <span className="text-sm text-zinc-400">نام کاربری</span>
                 <span className="text-sm font-medium text-zinc-100">
-                  {user.username}
+                  {selectedUser.username}
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
                 <span className="text-sm text-zinc-400">ایمیل</span>
                 <span className="text-sm font-medium text-zinc-100" dir="ltr">
-                  {user.email}
+                  {selectedUser.email}
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
                 <span className="text-sm text-zinc-400">تلفن</span>
                 <span className="text-sm font-medium text-zinc-100" dir="ltr">
-                  {user.phone}
+                  {selectedUser.phone}
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
                 <span className="text-sm text-zinc-400">وبسایت</span>
                 <span className="text-sm font-medium text-zinc-100" dir="ltr">
-                  {user.website}
+                  {selectedUser.website}
                 </span>
               </div>
             </div>
@@ -120,19 +87,19 @@ const UserDetails = () => {
               <div className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
                 <span className="text-sm text-zinc-400">نام خیابان</span>
                 <span className="text-sm font-medium text-zinc-100">
-                  {user.address.street}
+                  {selectedUser.address.street}
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
                 <span className="text-sm text-zinc-400">شهر</span>
                 <span className="text-sm font-medium text-zinc-100">
-                  {user.address.city}
+                  {selectedUser.address.city}
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
                 <span className="text-sm text-zinc-400">کدپستی</span>
                 <span className="text-sm font-medium text-zinc-100" dir="ltr">
-                  {user.address.zipcode}
+                  {selectedUser.address.zipcode}
                 </span>
               </div>
             </div>
@@ -147,13 +114,13 @@ const UserDetails = () => {
               <div className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
                 <span className="text-sm text-zinc-400">نام</span>
                 <span className="text-sm font-medium text-zinc-100">
-                  {user.company.name}
+                  {selectedUser.company.name}
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
                 <span className="text-sm text-zinc-400">شعار</span>
                 <span className="text-sm font-medium italic text-zinc-100">
-                  {user.company.catchPhrase}
+                  {selectedUser.company.catchPhrase}
                 </span>
               </div>
             </div>
