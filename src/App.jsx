@@ -1,57 +1,13 @@
-import { NavLink, Routes, Route, Navigate } from "react-router-dom";
-import Users from "./Users";
-import Posts from "./Posts";
-import AddUser from "./AddUser";
-import UserDetails from "./UserDetails";
-import NotFound from "./NotFound";
-
-const App = () => {
+import UserList from "./UserList";
+const App = ()=> {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden p-6">
-        <h1 className="text-3xl text-center font-bold text-indigo-800 mb-6">
-          React app
-        </h1>
-        <div className="flex justify-center mb-8 mt-3 gap-12">
-
-          <NavLink
-            to="/users"
-            className={({ isActive }) =>
-              isActive
-                ? "bg-indigo-600 p-3 rounded-lg text-white shadow-md mx-5"
-                : "bg-gray-100 p-3 rounded-lg text-gray-700 hover:bg-gray-200"
-            }
-          >
-            کاربران
-          </NavLink>
-          <NavLink
-            to="/posts"
-            className={({ isActive }) =>
-              isActive
-                ? "bg-indigo-600 p-3 mx-4 rounded-lg text-white shadow-md"
-                : "bg-gray-100 p-3 rounded-lg text-gray-700 hover:bg-gray-200"
-            }
-          >
-            پست‌ها
-          </NavLink>
-        </div>
-        <div className="">
-          <h2 className="text-2xl font-bold text-center "> به اپلیکشن اتوماسیون من خوش امدید😁</h2>
-        </div>
-        <div>
-          <Routes>
-            <Route path="/" element={<Navigate to="/users" />} />
-            <Route path="/users" element={<Users />}>
-              <Route path="add-user" element={<AddUser />} />
-              <Route path="user-details/:userId" element={<UserDetails />} />
-            </Route>
-            <Route path="/posts" element={<Posts />} />
-            <Route path="*" element={<NotFound/>}/>
-          </Routes>
-        </div>
-      </div>
+    <div className="bg-gray-100 p-4 rounded-lg shadow">
+      <h1 className="text-2xl font-bold text-gray-800">
+        سامانه هوشمند مدیریت یکپارچه
+      </h1>
+      <UserList />
     </div>
   );
-};
+}
 
 export default App;
