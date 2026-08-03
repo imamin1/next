@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
-
 export const UserContext = createContext();
+
 const initialUsers = [
   { id: 1, name: "علی رضایی", email: "ali.rezaei@example.com" },
   { id: 2, name: "زهرا احمدی", email: "zahra.ahmadi@example.com" },
@@ -14,19 +14,23 @@ const initialUsers = [
   { id: 9, name: "رضا قاسمی", email: "reza.ghasemi@example.com" },
   { id: 10, name: "نیلوفر رستمی", email: "niloufar.rostami@example.com" },
 ];
+
 const UserContextProvider = ({ children }) => {
   const [users, setUsers] = useState(initialUsers);
 
   const deleteUser = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
+    setUsers((prev) => prev.filter((user) => user.id !== id));
   };
-  const addUser = (user) => setUsers([...users, user]);
 
+  const addUser = (user) => {
+    setUsers((prev) => [...prev, user]);
+  };
 
-return (
-  <UserContext.Provider value={{ users, setUsers, deleteUser, addUser }}>
-    {children}
-  </UserContext.Provider>
-);
+  return (
+    <UserContext.Provider value={{ users, deleteUser, addUser }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
+
 export default UserContextProvider;
