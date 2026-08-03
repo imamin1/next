@@ -1,6 +1,13 @@
 import { createContext, useState } from "react";
 
-export const UserContext = createContext();
+export const UserContext = createContext({
+  users : [],
+  setUsers : () => {},
+  setUser : () => {},
+  deleteUser : () => {},
+  hasPermission : false,
+  setHasPermission : () => {}
+});
 
 const initialUsers = [
   { id: 1, name: "علی رضایی", email: "ali.rezaei@example.com" },
@@ -17,7 +24,7 @@ const initialUsers = [
 
 const UserContextProvider = ({ children }) => {
   const [users, setUsers] = useState(initialUsers);
-
+  const [hasPermission ,setHasPermission] = useState(false);
   const deleteUser = (id) => {
     setUsers((prev) => prev.filter((user) => user.id !== id));
   };
@@ -27,7 +34,7 @@ const UserContextProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ users, deleteUser, addUser }}>
+    <UserContext.Provider value={{ users, deleteUser, addUser , hasPermission ,setHasPermission }}>
       {children}
     </UserContext.Provider>
   );

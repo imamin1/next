@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
+import  permissionHOC  from "./permissionHOC";
 
 const UserItem = ({user}) => {
     const {deleteUser} = useContext(UserContext)
@@ -14,4 +15,4 @@ const UserItem = ({user}) => {
     );
 };
 
-export default UserItem;
+export default permissionHOC(UserItem);

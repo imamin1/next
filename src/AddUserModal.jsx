@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
 import { createPortal } from "react-dom";
+import  permissionHOC  from "./permissionHOC";
 
 const AddUserModal = () => {
   const { addUser } = useContext(UserContext);
@@ -92,4 +93,4 @@ const AddUserModal = () => {
   );
 };
 
-export default AddUserModal;
+export default permissionHOC(AddUserModal);
