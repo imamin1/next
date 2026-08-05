@@ -5,7 +5,7 @@ export const UserContext = createContext({
   setUsers : () => {},
   setUser : () => {},
   deleteUser : () => {},
-  hasPermission : false,
+  hasPermission : true,
   setHasPermission : () => {}
 });
 
@@ -24,7 +24,7 @@ const initialUsers = [
 
 const UserContextProvider = ({ children }) => {
   const [users, setUsers] = useState(initialUsers);
-  const [hasPermission ,setHasPermission] = useState(false);
+  const [hasPermission ,setHasPermission] = useState(true);
   const deleteUser = (id) => {
     setUsers((prev) => prev.filter((user) => user.id !== id));
   };
