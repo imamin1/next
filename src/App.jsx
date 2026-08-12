@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import ChildComponent from './ChildComponent';
-import Counter from './Counter';
+import React from 'react';
+import { Provider } from 'react-redux';
+import MyStore from './components/MyStore';
+import store from './redux/store';
 
 const App = () => {
-  const [count ,setCount] =useState(0);
-  console.log("app component")
   return (
-    <div className='flex flex-col justify-center items-center w-1/2 mx-auto h-screen m-12 gap-5'>
-      <ChildComponent/>
-      <Counter count={count} setCount={setCount}/>
-    </div>
+    <Provider store={store}>
+      <div>
+        <MyStore />
+      </div>
+    </Provider>
   );
 };
 
