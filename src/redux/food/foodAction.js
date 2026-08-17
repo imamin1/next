@@ -2,8 +2,9 @@ import {
     BUY_SANDWICH
 } from "./foodType"
 
-export const buysandwich = () => {
+export const buysandwich = (count) => {
     return {
-        type: BUY_SANDWICH
+        type: BUY_SANDWICH,
+        payload : count
     }
 }

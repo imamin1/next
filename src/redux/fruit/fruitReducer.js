@@ -12,11 +12,11 @@ const fruitState = {
     switch (action.type) {
         case BUY_APPLE:
             return {
-                ...state, apple: state.apple - 1
+                ...state, apple: state.apple - action.payload
             }
             case BUY_ORANGE:
                 return {
-                    ...state, orange: state.orange - 1
+                    ...state, orange: state.orange - action.payload
                 }
                 default:
                     return state
