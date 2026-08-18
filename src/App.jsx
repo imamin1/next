@@ -1,15 +1,11 @@
 import React from 'react';
-import UserComponents from './components/UserComponents';
-import { Provider } from 'react-redux';
-import store from './redux/store';
+import PersionDate from './components/PersionDate';
 
 const App = () => {
   return (
-    <Provider store={store}>
     <div>
-      <UserComponents/>
+      <PersionDate/>
     </div>
-    </Provider>
   );
 };
 
