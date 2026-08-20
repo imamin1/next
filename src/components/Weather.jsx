@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PersionDate from "./PersionDate";
 import { useDispatch, useSelector } from "react-redux";
-import getWeatherInfo from "../redux/weather/weatherAction";
+import  { sendWeatherRequest } from "../redux/weather/weatherAction";
 
 const Weather = () => {
   const { loading, data, error } = useSelector((state) => state.weather);
@@ -11,7 +11,7 @@ const Weather = () => {
   const hanleGetWeather = (e) => {
     e.preventDefault();
     if (!query.trim()) return;
-    dispatch(getWeatherInfo(query));
+    dispatch(sendWeatherRequest(query));
   };
 
   return (

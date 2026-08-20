@@ -1,14 +1,15 @@
 import axios from "axios"
 import { RECEIVE_WEATHER_ERROR, RECEIVE_WEATHER_RESPONSE, SEND_WEATHER_REQUEST } from "./weatherTypes"
 
-const sendWeatherRequest= ()=>{
+export const sendWeatherRequest= (query)=>{
     return {
-        type : SEND_WEATHER_REQUEST
+        type : SEND_WEATHER_REQUEST,
+        payload : query
     }
 }
 
 
-const receiveWeatherResponce= (data)=>{
+export const receiveWeatherResponce= (data)=>{
     return {
         type : RECEIVE_WEATHER_RESPONSE,
         payload : data
@@ -17,7 +18,7 @@ const receiveWeatherResponce= (data)=>{
 
 
 
-const receiveWeatherError= (error)=>{
+export const receiveWeatherError= (error)=>{
     return {
         type : RECEIVE_WEATHER_ERROR,
         payload : error
