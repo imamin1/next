@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import PersionDate from "./PersionDate";
 import { useDispatch, useSelector } from "react-redux";
-import  { sendWeatherRequest } from "../redux/weather/weatherAction";
+import { fetchWeather } from "../redux/weather/weatherThunk";
 
 const Weather = () => {
   const { loading, data, error } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
+  const [searchType, setSearchType] = useState("city");
 
   const hanleGetWeather = (e) => {
     e.preventDefault();
     if (!query.trim()) return;
-    dispatch(sendWeatherRequest(query));
+    dispatch(fetchWeather({ query, searchType }));
   };
 
   return (
@@ -22,21 +23,53 @@ const Weather = () => {
       <div className="relative w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl px-6 py-5 sm:px-8 sm:py-6">
         <form
           onSubmit={hanleGetWeather}
-          className="flex items-center gap-2 mb-4"
+          className="flex items-center gap-2 mb-4 flex-col"
         >
+          <div className="flex block gap-3 text-white">
+            <div className="flex gap-2 ">
+              <label htmlFor="cityRadio">جستوجوی شهر </label>
+              <input
+                type="radio"
+                name="searchType"
+                id="cityRadio"
+                checked={searchType === "city"}
+                value="city"
+                onChange={(e) => setSearchType(e.target.value)}
+              />
+            </div>
+
+            <div className="flex gap-2">
+              <label htmlFor="coordsRadio">جستوجوی با مختصات </label>
+
+              <input
+                type="radio"
+                name="searchType"
+                id="coordsRadio"
+                checked={searchType === "coords"}
+                value="coords"
+                onChange={(e) => setSearchType(e.target.value)}
+              />
+            </div>
+          </div>
+
           <input
             type="text"
             dir="rtl"
-            placeholder="نام شهر یا کشور"
+            placeholder={
+              searchType === "city"
+                ? "نام شهر یا کشور"
+                : "lat,lon 51.3892 ,35.5312 مثلا:"
+            }
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="flex-1 bg-white/10 text-slate-100 placeholder-slate-400 text-sm rounded-xl px-4 py-2.5 outline-none border border-white/10 focus:border-amber-400/60 focus:bg-white/15 transition-colors"
+            className="flex-1 bg-white/10 text-slate-100 placeholder-slate-400 text-sm rounded-xl text-center my-3 px-4 py-2.5 outline-none border border-white/10 focus:border-amber-400/60 focus:bg-white/15 transition-colors"
           />
           <button
             type="submit"
-            className="shrink-0 bg-amber-400 hover:bg-amber-300 text-slate-900 font-semibold text-sm rounded-xl px-4 py-2.5 transition-colors"
+            disabled={loading}
+            className="shrink-0 bg-amber-400 hover:bg-amber-300 text-slate-900 font-semibold text-sm rounded-xl px-4 py-2.5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            جستجو
+            {loading ? "در حال جستجو..." : "جستجو"}
           </button>
         </form>
 
@@ -49,7 +82,9 @@ const Weather = () => {
         {loading ? (
           <div className="flex flex-col items-center justify-center py-10 gap-3">
             <div className="w-8 h-8 border-2 border-slate-600 border-t-amber-400 rounded-full animate-spin" />
-            <span className="text-slate-400 text-sm">در حال دریافت اطلاعات...</span>
+            <span className="text-slate-400 text-sm">
+              در حال دریافت اطلاعات...
+            </span>
           </div>
         ) : data.main ? (
           <div className="flex flex-col items-center text-center">
@@ -78,7 +113,9 @@ const Weather = () => {
           </div>
         ) : error ? (
           <div className="flex flex-col items-center py-10 gap-2 text-center">
-            <h3 className="text-rose-300 text-sm">نام شهر یا کشور را وارد کنید</h3>
+            <h3 className="text-rose-300 text-sm">
+              {searchType==="city" ? "نام یک شهر یا کشور را وارد کنید" : "یک مختصات جغرافیایی وارد کنید"}
+            </h3>
             <p className="text-slate-500 text-xs">{error}</p>
           </div>
         ) : (

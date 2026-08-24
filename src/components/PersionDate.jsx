@@ -40,7 +40,7 @@ const PersionDate = () => {
         setTime(m.format("hh:mm:ss"))
     },[])
     return (
-        <div className='flex flex-col justify-center w-full items-center h-screen'>
+        <div className='flex flex-col justify-center w-full items-center h-21'>
             <span>{date}</span>
             <span>{time} ساعت</span>
         </div>

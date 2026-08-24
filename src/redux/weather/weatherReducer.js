@@ -5,7 +5,7 @@ import {
 } from "./weatherTypes";
 
 const init = {
-    loading: true,
+    loading: false,
     data: [],
     error: ''
 }
