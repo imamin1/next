@@ -1,8 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
 @import "tailwindcss";
-@font-face{
-  font-family : 'iranyekanwebregular.b95439c1.26xpsrtw74cat';
-  src : url("/public/fonts/iranyekanwebregular.b95439c1.26xpsrtw74cat.woff")
+html, body {
+  background-color: #0A0D14;
+  font-family: 'Vazirmatn', 'Inter', sans-serif;
 }
-*{
-  font-family:"iranyekanwebregular.b95439c1.26xpsrtw74cat";
+
+.font-latin {
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
 }
+:root {
+  --color-blue1: #023e8a;
+  --color-blue2: #00b4d8;
+  --color-blue3: #caf0f8;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));

@@ -1,16 +1,12 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import Weather from './components/Weather';
-import { store } from './redux/store';
+import Layout from './layout/Layout';
 
 const App = () => {
-  return (
-    <Provider store={store}>
-    <div>
-      <Weather/>
-    </div>
-    </Provider>
-  );
+    return (
+        <div className='h-full w-full'>
+            <Layout/>
+        </div>
+    );
 };
 
 export default App;
