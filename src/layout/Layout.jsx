@@ -8,9 +8,9 @@ const Layout = () => {
         {name : "کاربران"},
         {name : "پست ها"},
         {name : "کاربران"},
-        {name : "کاربران"},
-        
+        {name : "کاربران"},  
     ]
+
     return (
         // Layout اصلی
 <div className="flex flex-col h-screen">

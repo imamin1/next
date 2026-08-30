@@ -16,4 +16,4 @@ html, body {
   --color-blue3: #caf0f8;
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
