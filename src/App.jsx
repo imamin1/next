@@ -1,21 +1,40 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./layout/Layout";
+import Posts from "./pages/posts/Posts";
+import Comments from "./pages/comments/Comments";
+import Gallery from "./pages/gallery/Gallery";
+import Users from "./pages/users/Users";
 
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import Layout from './layout/Layout';
- const App = () => {
-const {darkmode}= useSelector(state=>state.darkmode);
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Layout />,
+        children: [
+            { index: true, element: <Posts /> },
+            { path: "posts", element: <Posts /> },
+            { path: "comments", element: <Comments /> },
+            { path: "gallery", element: <Gallery /> },
+            { path: "users", element: <Users /> },
+        ],
+    },
+]);
 
+function App() {
+    const { darkmode } = useSelector((state) => state.darkmode);
 
-useEffect(() => {
-    document.documentElement.setAttribute('data-theme', darkmode);
-    localStorage.setItem('theme', darkmode);
-}, [darkmode]);
+    useEffect(() => {
+        const root = document.documentElement;
+        if (darkmode === "dark") {
+            root.classList.add("dark");
+        } else {
+            root.classList.remove("dark");
+        }
+        localStorage.setItem("theme", darkmode);
+    }, [darkmode]);
 
-    return (
-        <div className="min-h-screen w-full bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
-            <Layout/>
-        </div>
-    );
-};
+    return <RouterProvider router={router} />;
+}
 
 export default App;

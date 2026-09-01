@@ -1,28 +1,21 @@
-import React from 'react';
-import Navbar from './navbar/Navbar';
-import Content from './content/Content';
-import Sidebar from './sidebar/Sidebar';
+// layout/Layout.jsx
+import { Outlet } from "react-router-dom";
+import Sidebar from "./sidebar/Sidebar";
+import Navbar from "./navbar/Navbar";
+import Content from "./content/Content";
 
-const Layout = () => {
-    const titleBar=[
-        {name : "کاربران"},
-        {name : "پست ها"},
-        {name : "کاربران"},
-        {name : "کاربران"},  
-    ]
-
+function Layout() {
     return (
-        // Layout اصلی
-<div className="flex flex-col h-screen">
-  <Navbar />
-  <div className="flex flex-1 overflow-hidden">
-    <Sidebar />
-    <main className="flex-1 overflow-y-auto">
-        <Content/>
-    </main>
-  </div>
-</div>
+        <div className="flex h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+            <Sidebar />
+            <div className="flex-1 flex flex-col">
+                <Navbar />
+                <Content>
+                    <Outlet />
+                </Content>
+            </div>
+        </div>
     );
-};
+}
 
 export default Layout;

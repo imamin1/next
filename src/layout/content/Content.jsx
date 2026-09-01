@@ -1,11 +1,10 @@
-import React from 'react';
+import { Outlet } from "react-router-dom";
 
-const Content = () => {
+function Content() {
     return (
-        <div className=' w-full h-full bg-blue-300 dark:bg-gray-900 p-5 '>
-            hello
-        </div>
+        <main className="flex-1 bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 overflow-y-auto p-6 custom-scroll flex-1 overflow-y-auto p-6 dark:bg-[#0A0D14]">
+            <Outlet />
+        </main>
     );
-};
-
+}
 export default Content;
